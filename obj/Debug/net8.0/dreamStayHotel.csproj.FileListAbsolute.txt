@@ -145,3 +145,4 @@ C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\refint\dreamStayHotel.d
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.pdb
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.genruntimeconfig.cache
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\ref\dreamStayHotel.dll
+C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.sourcelink.json
