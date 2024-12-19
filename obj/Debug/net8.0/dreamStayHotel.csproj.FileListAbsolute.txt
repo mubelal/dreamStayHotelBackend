@@ -146,6 +146,7 @@ C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.pdb
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.genruntimeconfig.cache
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\ref\dreamStayHotel.dll
 C:\Users\MB\source\repos\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.sourcelink.json
+<<<<<<< HEAD
 C:\Users\Asus-01\Desktop\dreamStayHotel\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Asus-01\Desktop\dreamStayHotel\bin\Debug\net8.0\appsettings.json
 C:\Users\Asus-01\Desktop\dreamStayHotel\bin\Debug\net8.0\dreamStayHotel.exe
@@ -294,3 +295,5 @@ C:\Users\Asus-01\Desktop\dreamStayHotel\obj\Debug\net8.0\refint\dreamStayHotel.d
 C:\Users\Asus-01\Desktop\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.pdb
 C:\Users\Asus-01\Desktop\dreamStayHotel\obj\Debug\net8.0\dreamStayHotel.genruntimeconfig.cache
 C:\Users\Asus-01\Desktop\dreamStayHotel\obj\Debug\net8.0\ref\dreamStayHotel.dll
+=======
+>>>>>>> 98d0e2b4b121ca8c3a9fb7cf4499cd54e5625f5d
