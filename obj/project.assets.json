@@ -3356,19 +3356,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MB\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus-01\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MB\\source\\repos\\dreamStayHotel\\dreamStayHotel.csproj",
+      "projectUniqueName": "C:\\Users\\Asus-01\\Desktop\\dreamStayHotel\\dreamStayHotel.csproj",
       "projectName": "dreamStayHotel",
-      "projectPath": "C:\\Users\\MB\\source\\repos\\dreamStayHotel\\dreamStayHotel.csproj",
-      "packagesPath": "C:\\Users\\MB\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MB\\source\\repos\\dreamStayHotel\\obj\\",
+      "projectPath": "C:\\Users\\Asus-01\\Desktop\\dreamStayHotel\\dreamStayHotel.csproj",
+      "packagesPath": "C:\\Users\\Asus-01\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus-01\\Desktop\\dreamStayHotel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\MB\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus-01\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3449,7 +3449,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

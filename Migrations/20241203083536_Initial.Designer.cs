@@ -11,7 +11,7 @@ using dreamStayHotel.Context;
 namespace dreamStayHotel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241130221605_Initial")]
+    [Migration("20241203083536_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -219,6 +219,44 @@ namespace dreamStayHotel.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("dreamStayHotel.Entities.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Extras")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Img_Src")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("MaxAdults")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MaxChildren")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PricePerNight")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
