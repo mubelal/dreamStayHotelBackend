@@ -7,6 +7,8 @@ namespace dreamStayHotel.Context
     public class ApplicationDbContext(DbContextOptions options) : IdentityDbContext<ApplicationUser>(options)
     {
        public DbSet<Room> Rooms { get; set; }
+        
+        public DbSet<Booking> Bookings { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

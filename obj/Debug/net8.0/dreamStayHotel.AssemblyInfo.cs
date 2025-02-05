@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("eae49fc0-750b-4184-a52d-42e05b952b24")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("dreamStayHotel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8b9997b6aa4d69a5e7a62ccdebca11d66b63d0b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98d0e2b4b121ca8c3a9fb7cf4499cd54e5625f5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("dreamStayHotel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dreamStayHotel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

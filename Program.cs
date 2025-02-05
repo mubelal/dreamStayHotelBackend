@@ -20,8 +20,19 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;      // No number required
+    options.Password.RequireLowercase = true;   // Require lowercase letters
+    options.Password.RequireUppercase = false;  // No uppercase required
+    options.Password.RequireNonAlphanumeric = false; // No symbol required
+    options.Password.RequiredLength = 3;       // Minimum length 3 (e.g., "asd")
+    options.Password.RequiredUniqueChars = 1;   // At least 1 unique character
+});
+
 // JWT
-builder.Services.AddAuthentication(o => {
+builder.Services.AddAuthentication(o =>
+{
     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(o =>
@@ -50,7 +61,8 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(o => {
+builder.Services.AddSwaggerGen(o =>
+{
     o.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -90,7 +102,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -1,4 +1,4 @@
-﻿using dreamStayHotel.DTO;
+using dreamStayHotel.DTO;
 using dreamStayHotel.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,17 +16,13 @@ namespace dreamStayHotel.Controllers
     public class AccountController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration config) : ControllerBase
     {
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterDTO registerDTO) 
+        public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             var newUser = new ApplicationUser()
             {
                 Email = registerDTO.Email,
                 PasswordHash = registerDTO.Password,
-                UserName = registerDTO.UserName,
-                FullName = registerDTO.FullName,
-                Address = registerDTO.Address,
-                PhoneNumber = registerDTO.PhoneNumber,
-                DateOfBirth = registerDTO.DateOfBirth,
+                UserName = registerDTO.UserName
             };
 
             var user = await userManager.FindByEmailAsync(newUser.Email);
@@ -36,7 +32,7 @@ namespace dreamStayHotel.Controllers
             if (!createUser.Succeeded) return BadRequest("Nem sikerült létrehozni a felhasználót");
 
             var checkAdmin = await roleManager.FindByNameAsync("Admin");
-            if(checkAdmin is  null)
+            if (checkAdmin is null)
             {
                 await roleManager.CreateAsync(new IdentityRole() { Name = "Admin" });
                 await userManager.AddToRoleAsync(newUser, "Admin");
@@ -50,47 +46,60 @@ namespace dreamStayHotel.Controllers
             return Ok("A felhasználó sikeresen létrehozva");
         }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginDTO loginDTO)
-    {
-        if (loginDTO is null) return BadRequest("Üres mező!");
-
-        var getUser = await userManager.FindByNameAsync(loginDTO.UserName);
-        if (getUser is null) return NotFound("A felhasználó nem található");
-        
-        bool checkPassword = await userManager.CheckPasswordAsync(getUser, loginDTO.Password);
-        if (!checkPassword) return BadRequest("Helytelen jelszó");
-
-        var getUserRole = await userManager.GetRolesAsync(getUser);
-        string token = GenerateToken(getUser.Id, getUser.UserName!, getUser.Email!, getUserRole.First());
-        
-        return Ok(token);
-    }
-
-
-    private string GenerateToken(string id, string userName, string email, string role)
-    {
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
-        var credantials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        var userClaims = new[]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
+            if (loginDTO is null) return BadRequest("Üres mező!");
+
+            var getUser = await userManager.FindByNameAsync(loginDTO.UserName);
+            if (getUser is null) return NotFound("A felhasználó nem található");
+
+            bool checkPassword = await userManager.CheckPasswordAsync(getUser, loginDTO.Password);
+            if (!checkPassword) return BadRequest("Helytelen jelszó");
+
+            var getUserRole = await userManager.GetRolesAsync(getUser);
+            string token = GenerateToken(getUser.Id, getUser.UserName!, getUser.Email!, getUserRole.First());
+
+            return Ok(token);
+        }
+
+        [HttpGet("getUserRole")]
+        public async Task<IActionResult> GetUserRole()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId is null) return Unauthorized("Érvénytelen authentikációs token");
+
+            var getUser = await userManager.FindByIdAsync(userId);
+            if (getUser is null) return NotFound("A felhasználó nem található");
+
+            var getUserRole = await userManager.GetRolesAsync(getUser);
+
+            return Ok(getUserRole[0]);
+        }
+
+        private string GenerateToken(string id, string userName, string email, string role)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]));
+            var credantials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var userClaims = new[]
+            {
         new Claim(ClaimTypes.NameIdentifier, id),
         new Claim(ClaimTypes.Name, userName),
         new Claim(ClaimTypes.Email, email),
         new Claim(ClaimTypes.Role, role),
     };
 
-        var token = new JwtSecurityToken(
-            issuer: config["Jwt:Issuer"],
-            audience: config["Jwt:Audience"],
-            claims: userClaims,
-            expires: DateTime.Now.AddDays(1),
-            signingCredentials: credantials
-        );
+            var token = new JwtSecurityToken(
+                issuer: config["Jwt:Issuer"],
+                audience: config["Jwt:Audience"],
+                claims: userClaims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: credantials
+            );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
     }
 }

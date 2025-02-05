@@ -45,11 +45,8 @@ namespace dreamStayHotel.Controllers
             roomToChange.Img_Src = room.Img_Src;
             roomToChange.Name = room.Name;
             roomToChange.PricePerNight = room.PricePerNight;
-            roomToChange.Rating = room.Rating;
-            roomToChange.Extras = room.Extras;
             roomToChange.MaxAdults = room.MaxAdults;
             roomToChange.MaxChildren = room.MaxChildren;
-            roomToChange.CheckInDate = room.CheckInDate;
 
             await context.SaveChangesAsync();
             return Ok("Sikeresen módosítottad a szobát.");
@@ -71,7 +68,7 @@ namespace dreamStayHotel.Controllers
         
         public async Task<IActionResult> SortBy([FromBody] SortByDTO sortBy)
         {
-            var rooms = await context.Rooms.Where(r => r.CheckInDate != null).Where(r => r.MaxAdults == sortBy.MaxAdults).Where(r => r.MaxChildren == sortBy.MaxChildren).ToListAsync();
+            var rooms = await context.Rooms.Where(r => r.MaxAdults == sortBy.MaxAdults).Where(r => r.MaxChildren == sortBy.MaxChildren).ToListAsync();
 
             return Ok(rooms);
         }
